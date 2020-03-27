@@ -48,7 +48,7 @@ private :
     double** matrix;
     int column, string;
 
-   // double Determinant(double** matrix, int strSize, int colSize);
+   double Determinant(double** matrix, int strSize, int colSize);
     void Nulling();
 
 };

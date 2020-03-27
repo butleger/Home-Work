@@ -6,12 +6,9 @@ using namespace std;
 int main()
 {
 	try {
-		Matrix m(2, 2), m1(2, 2);
+		Matrix m(3, 3), m1(2, 2);
 		m.InputMatrix();
-		m1.InputMatrix();
-		m.OutputMatrix();
-		Matrix m3 = (m * m1);
-		m3.OutputMatrix();
+		cout << m.Determinant();
 	}
 	catch (exception ex)
 	{
