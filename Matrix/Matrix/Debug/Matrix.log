@@ -1,0 +1,5 @@
+﻿  Matrix.cpp
+  MatrixDef.cpp
+C:\Users\fedr\source\repos\Matrix\Matrix\MatrixDef.cpp(128,61): error C2660: Matrix::Determinant: функция не принимает 3 аргументов
+C:\Users\fedr\source\repos\Matrix\Matrix\MatrixDef.cpp(126,16): message : см. объявление "Matrix::Determinant"
+  Создание кода...
