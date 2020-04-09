@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="fraction.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="MatrixDef.cpp" />
   </ItemGroup>

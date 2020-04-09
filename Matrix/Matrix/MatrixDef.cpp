@@ -1,175 +1,266 @@
-#include "Matrix.h"
-#include <cmath>
 #include <iostream>
+#include "Matrix.h"
 using namespace std;
 
-// конструктор создания матрицы
-
-Matrix::Matrix()
+//конструкторы и деструкторы
+Matrix::Matrix(int string, int column) : StringSize(string), ColumnSize(column)
 {
-	string = 0;
-	column = 0;
-	matrix = nullptr;
+	if (string < 0 || column < 0)
+	{
+		cout << " bad sizes " << endl;
+		return;
+	}
+	matrix = new double* [StringSize];
+	for (int i = 0; i < StringSize; i++)
+		matrix[i] = new double[ColumnSize];
+	Nulling();
 }
 
-Matrix::Matrix(int string, int column)
+Matrix::Matrix(const Matrix& mat) : Matrix(mat.StringSize, mat.ColumnSize) 
 {
-	this->string = string;
-	this->column = column;
-	matrix = new double* [string];
-	for (int i = 0; i < string; i++)
-		matrix[i] = new double[column];
-	this->Nulling();
-}
-
-// конструктор копирования
-
-Matrix::Matrix(const Matrix& mat)
-{
-	this->string = mat.string;
-	this->column = mat.column;
-	matrix = new double* [string];
-	for (int i = 0; i < string; i++)
-		matrix[i] = new double[column];
-
-	for (int i = 0; i < this->string; i++)
-		for (int j = 0; j < this->column; j++)
+	for (int i = 0; i < StringSize; i++)
+		for (int j = 0; j < ColumnSize; j++)
 			this->matrix[i][j] = mat.matrix[i][j];
 }
-
-// деструктор
 
 Matrix::~Matrix()
 {
-	for (int i = 0; i < this->string; i++)
+	for (int i = 0; i < StringSize; i++)
 		delete[] matrix[i];
-	delete[] matrix;
+	delete matrix;
 }
 
-// метод получения размера матрицы
 
-int Matrix::GetString()
+//операторы
+Matrix& Matrix::operator=(const Matrix& mat)
 {
-	return string;
-}
-
-int Matrix::GetColumn()
-{
-	return column;
-}
-
-// перегруженные операторы
-
-Matrix operator+(Matrix& first, Matrix& second)
-{
-	if (first.column != second.column || first.string != second.column) throw exception("bad matrix for sum");
-
-	Matrix* temp = new Matrix(first.string,first.column);
-	temp->Nulling();
-
-	for (int i = 0; i < temp->string; i++)
-		for (int j = 0; j < temp->column; j++)
-			temp->matrix[i][j] = first.matrix[i][j] + second.matrix[i][j];
-	return (*temp);
-}
-
-Matrix operator*(Matrix& first, Matrix& second)
-{
-	if (first.string != second.column ) throw exception("bad matrix for multy");
-
-	Matrix* temp = new Matrix(second.string, first.column);
-	temp->Nulling();
-
-	for (int i = 0; i < temp->string; i++)
-		for (int j = 0; j < temp->column; j++)
-			for (int k = 0; k < first.column; k++)
-				temp->matrix[i][j] += first.matrix[i][k] * second.matrix[k][j];
-
-	return (*temp);
-}
-
-Matrix Matrix::operator=(Matrix& mat)
-{
-	if (this->string != mat.string || this->column != mat.column ) throw exception("bad matrix for equality");
-
-	Matrix* temp = new Matrix(mat.string, mat.column);
-	temp->Nulling();
-
-	for (int i = 0; i < this->string; i++)
-		for (int j = 0; j < this->column; j++)
-			this->matrix[i][j] = mat.matrix[i][j];
-
-	return (*temp);
-}
-
-Matrix operator!(Matrix& mat)
-{
-	for (int i = 0; i < mat.string; i++)
-		for (int j = 0; j < i; j++)
-			swap(mat.matrix[i][j], mat.matrix[j][i]);
-	return mat;
-}
-
-void Matrix::InputMatrix()// метод ввода матрицы
-{
-	for (int i = 0; i < this->string; i++)
-		for (int j = 0; j < this->column; j++)
-			cin >> this->matrix[i][j];
-}
-void Matrix::OutputMatrix()// метод вывода матрицы
-{
-	for (int i = 0; i < this->string; i++) {
-		for (int j = 0; j < this->column; j++)
-			cout << this->matrix[i][j] << " ";
-		cout << endl;
+	if (mat.ColumnSize != this->ColumnSize || mat.StringSize != this->StringSize)
+	{
+		Matrix* m = new Matrix(mat.StringSize, mat.ColumnSize);
+		cout << " bad matrix!" << endl;
+		return *m;
 	}
+	for (int i = 0; i < this->StringSize; i++)
+		for (int j = 0; j < this->ColumnSize; j++)
+			this->matrix[i][j] = mat.matrix[i][j];
+	return *this;
 }
+
+Matrix& operator+(const Matrix& m1, const Matrix& m2)
+{
+	if (m1.ColumnSize != m2.ColumnSize || m1.StringSize != m2.StringSize)
+	{
+		Matrix* m = new Matrix(m1.StringSize, m2.ColumnSize);
+		cout << " bad matrix!" << endl;
+		return *m;
+	}
+	Matrix* m = new Matrix(m1);
+	for (int i = 0; i < m1.StringSize; i++)
+		for (int j = 0; j < m1.ColumnSize; j++)
+			m->matrix[i][j] += m2.matrix[i][j];
+	return *m;
+}
+
+Matrix& operator-(const Matrix& m1, const Matrix& m2)
+{
+	if (m1.ColumnSize != m2.ColumnSize || m1.StringSize != m2.StringSize)
+	{
+		Matrix* m = new Matrix(m1.StringSize, m2.ColumnSize);
+		cout << " bad matrix!" << endl;
+		return *m;
+	}
+	Matrix* m = new Matrix(m1);
+	for (int i = 0; i < m1.StringSize; i++)
+		for (int j = 0; j < m1.ColumnSize; j++)
+			m->matrix[i][j] -= m2.matrix[i][j];
+	return *m;
+}
+
+ostream& operator<<(ostream& os, const Matrix& m2)
+{
+	for (int i = 0; i < m2.StringSize; i++) {
+		for (int j = 0; j < m2.ColumnSize; j++)
+			os << static_cast<double>(m2.matrix[i][j])<< " ";
+		os << endl;
+	}
+	return os;
+}
+
+Matrix& operator*(const Matrix& m1, const Matrix& m2)
+{
+	if (m1.ColumnSize != m2.StringSize)
+	{
+		Matrix* m = new Matrix(m1.StringSize, m2.ColumnSize);
+		cout << " bad matrix!" << endl;
+		return *m;
+	}
+
+	Matrix* m = new Matrix(m1.StringSize, m2.ColumnSize);
+
+	for (int i = 0; i < m1.StringSize; i++)
+		for (int j = 0; j < m2.ColumnSize; j++)
+			for (int k = 0; k < m1.ColumnSize; k++)
+				m->matrix[i][j] += m1.matrix[i][k] * m2.matrix[k][j];
+	return *m;
+}
+Matrix& Matrix::operator!()
+{
+	for (int i = 0; i < StringSize; i++)
+		for (int j = 0; j < i; j++)
+			swap(this->matrix[i][j], this->matrix[j][i]);
+	return *this;
+}
+
+//функции
+void Matrix::InputMatrix()
+{
+	for (int i = 0; i < StringSize; i++)
+		for (int j = 0; j < ColumnSize; j++)
+			cin >> matrix[i][j];
+}
+
 double Matrix::Determinant()
 {
-	return Determinant(this->matrix, this->string, this->column);
+	if (this->StringSize != this->ColumnSize)
+	{
+		cout << "Bad Matrix for Determinant!\n";
+	return 0;
+	}
+	return Determinant(matrix, StringSize);
+	
 }
 
-double Matrix::Determinant(double** matrix, int strSize, int colSize)
+int Matrix::getStrSize()
 {
-	if (strSize != colSize) throw exception("Cant compute determinant of non-square matrix");
-
-	if (strSize == 2) return matrix[0][0] * matrix[1][1] - matrix[1][0] * matrix[0][1];
-
-	double determinant = 0.0;
-	int J = 0;
-	double** temp = new double*[strSize - 1];
-	for (int i = 0; i < strSize - 1; i++)
-	{
-		temp[i] = new double[colSize - 1];
-		for (int j = 0; j < colSize - 1; j++)
-			temp[i][j] = 0;
-	}
-
-	for (int j = 0; j < colSize; j++)
-	{
-		for (int i = 1; i < strSize; i++) 
-		{
-			for (int k = 0; k < colSize; k++)
-			{
-				if (k == j) continue;
-				temp[i - 1][J] = matrix[i][k];
-				determinant += matrix[0][j] * (j % 2 == 0 ? -1 : 1) * Determinant(temp, strSize - 1, colSize - 1);
-				J++;
-			}
-			J = 0;
-		}
-		for (int i = i = 0; i < strSize - 1; i++)
-			for (int j = 0; j < colSize - 1; j++)
-				temp[i][j] = 0;
-
-	}
-	return determinant;
-
+	return StringSize;
 }
 
+int Matrix::getColSize()
+{
+	return ColumnSize;
+}
+
+Matrix& Matrix::Reverse()
+{
+	if (ColumnSize != StringSize || this->Determinant() == 0 ) 
+	{
+		cout << " Non sqared matrix, cant do reverse!\n";
+		Matrix* SuperMatrix = new Matrix(ColumnSize, ColumnSize);
+		return *SuperMatrix;
+	}
+
+	double coef = 0.0;
+
+	double ** sMatrix = new double*[StringSize];
+	for (int i = 0; i < StringSize; i++)
+		sMatrix[i] = new double[ColumnSize];
+	for (int i = 0; i < StringSize; i++) {
+		for (int j = 0; j < ColumnSize; j++)
+			sMatrix[i][j] = 0.0;
+		sMatrix[i][i] = 1.0;
+	}
+
+
+
+	for (int i = 0; i < StringSize; i++)
+	{
+		coef = matrix[i][i];
+		for (int j = 0; j < ColumnSize; j++)
+		{
+			this->matrix[i][j] /= coef;
+			sMatrix[i][j] = sMatrix[i][j]/ coef;
+		}
+
+
+		for (int i1 = i + 1; i1 < StringSize; i1++)
+		{
+			coef = matrix[i1][i];
+			for (int j1 = 0; j1 < ColumnSize; j1++)
+			{
+				matrix[i1][j1] -= coef* matrix[i][j1];
+			//	sMatrix[i1][j1] -= sMatrix[i1][i] * sMatrix[i][j1];
+				sMatrix[i1][j1] -= coef * sMatrix[i][j1];
+			}
+		}
+	}
+
+	for (int i = StringSize - 1; i > -1 ; i--)
+	{
+		coef = matrix[i][i];
+		for (int j = ColumnSize; j > -1 ; j--)
+		{
+			this->matrix[i][j] = this->matrix[i][j]/coef;
+			sMatrix[i][j] /= coef;
+		}
+
+		for (int i1 = i - 1; i1 > -1 ; i1--)
+		{
+			coef = matrix[i1][i];
+			for (int j1 = ColumnSize - 1; j1 > -1 ; j1--)
+			{
+				matrix[i1][j1] -= coef * matrix[i][j1];
+				//sMatrix[i1][j1] -= sMatrix[i1][i] * sMatrix[i][j1];
+				sMatrix[i1][j1] -= coef * sMatrix[i][j1];
+			}
+		}
+	}
+
+	Input(sMatrix);
+
+	for (int i = 0; i < StringSize; i++)
+		delete[] sMatrix[i];
+	delete sMatrix;
+
+	Matrix* m = new Matrix(*this);
+	return *m;
+}
+
+//служебные поля
 void Matrix::Nulling()
 {
-	for (int i = 0; i < this->string; i++)
-		for (int j = 0; j < this->column; j++)
-			this->matrix[i][j] = 0;
+	for (int i = 0; i < StringSize; i++)
+		for (int j = 0; j < ColumnSize; j++)
+			matrix[i][j] = 0;
+}
+
+double Matrix::Determinant(double** matrix, int Size)
+{
+	if (Size == 2)
+		return matrix[0][0] * matrix[1][1] - matrix[1][0] * matrix[0][1];
+
+	double result = 0.0;
+	double ** sMatrix = new double* [Size - 1];
+	for (int i = 0; i < Size - 1; i++)
+		sMatrix[i] = new double[Size - 1];
+
+	int I = 0, J = 0;
+
+	for (int k = 0; k < Size; k++)
+	{
+		for (int i = 1; i < Size; i++) {
+			for (int j = 0; j < Size; j++)
+			{
+				if (j == k)continue;
+				sMatrix[I][J] = matrix[i][j];
+				J++;
+			}
+			J = 0; I++;
+		}
+		result += (k%2 == 1 ? -1.0 : 1.0) * matrix[0][k] * Determinant(sMatrix, Size - 1);
+		I = 0; J = 0;
+	}
+
+	for (int i = 0; i < Size - 1; i++)
+		delete[] sMatrix[i];
+	
+	delete sMatrix;
+
+	return result;
+}
+
+void Matrix::Input(double** matrix)
+{
+	for (int i = 0; i < StringSize; i++)
+		for (int j = 0; j < ColumnSize; j++)
+			this->matrix[i][j] = matrix[i][j];
 }

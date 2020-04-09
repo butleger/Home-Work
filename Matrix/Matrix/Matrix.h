@@ -2,57 +2,40 @@
 #ifndef _H_MATRIX
 #define _H_MATRIX
 #include <iostream>
-
+using namespace std;
 class Matrix
 {
-public:
+public :
+	//конструкторы и деструкторы
+	Matrix(int string = 0, int column = 0);
+	Matrix(const Matrix& mat);
+	~Matrix();
+	
+	//операторы
+	Matrix& operator=(const Matrix& m1);
+	friend Matrix& operator+(const Matrix& m1, const Matrix& m2);
+	friend Matrix& operator-(const Matrix& m1, const Matrix& m2);
+	friend ostream& operator<<(ostream & os, const Matrix& m2);
+	friend Matrix& operator*(const Matrix& m1, const Matrix& m2);
+	Matrix& operator!();
 
-    // конструктор создания матрицы
+	//функции
+	void InputMatrix();
+	double Determinant();
+	int getStrSize();
+	int getColSize();
+	Matrix& Reverse();
 
-    Matrix();
+protected :
+	//поля
+	int ColumnSize, StringSize;
+	double** matrix;
 
-    Matrix(int, int);
-
-    // конструктор копирования
-
-    Matrix(const Matrix&);
-
-    // деструктор
-
-    ~Matrix();
-
-    // метод получения размера матрицы
-
-    int GetString();
-    int GetColumn();
-
-    // перегруженные операторы
-   // double operator[](int);
-
-    friend Matrix operator+(Matrix&, Matrix&);
-
-    friend Matrix operator*(Matrix&, Matrix&);
-
-    Matrix operator=(Matrix&);
-
-    friend Matrix operator!(Matrix&);
-
-    void InputMatrix();// метод ввода матрицы
-
-    void OutputMatrix();// метод вывода матрицы
-
-    double Determinant();
-
-private :
-
-    double** matrix;
-    int column, string;
-
-   double Determinant(double** matrix, int strSize, int colSize);
-    void Nulling();
-
+	//служебные функции
+	void Nulling();
+	double Determinant(double ** matrix, int Size);
+	void Input(double** matrix);
 };
-
 
 #endif // !_H_MATRIX
 
