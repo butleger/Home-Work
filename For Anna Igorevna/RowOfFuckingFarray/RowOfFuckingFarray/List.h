@@ -2,7 +2,6 @@
 #ifndef _LIST_H_
 #define _LIST_H_
 #include <iostream>
-#include "Fraction.h"
 using namespace std;
 
 template <class T>
@@ -19,16 +18,17 @@ protected :
 		{}
 	};
 
+
 	Node* head;
-	ostream& getStream(ostream& out)
+	/*ostream& getStream(ostream& out)
 	{
 		for (Node* temp = head; temp; temp = temp->next)
 			out << temp->info << " ";
 		return out;
-	}
+	}*/
 public:
 	MyList();
-	~MyList();
+	virtual ~MyList();
 	
 	template <class T1>
 	friend ostream& operator<<(ostream& os, MyList<T1>& list);
@@ -62,7 +62,9 @@ MyList<T>::~MyList()
 template <class T>
 ostream& operator<<(ostream& out, MyList<T>& list)
 {
-	return list.getStream(out);
+	for (auto temp = list.head; temp; temp = temp->next)
+		out << temp->info << " ";
+	return out;
 }
 
 template <class T>

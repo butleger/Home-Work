@@ -13,6 +13,7 @@ struct Fraction : public pair<int, int>
 	int second;
 };
 
+ostream& operator<<(ostream& out, const Fraction& frac);
 
 
 #endif // !_FRACTION_H_

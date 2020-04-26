@@ -49,7 +49,7 @@ void FarrayRow::Increase()
 				Fraction(temp->info.first + temp->next->info.first,
 						temp->info.second + temp->next->info.second),
 				temp->next);
-			temp = temp->next->next;
+			temp = temp->next;
 
 		}
 	}
