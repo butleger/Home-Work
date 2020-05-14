@@ -10,7 +10,8 @@
 using namespace std;
 
 int constexpr Max = INT_MAX;
-
+//some comments
+//комментарии
 Graph::Graph() :
 	graph(0),
 	quantity(0)
