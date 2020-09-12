@@ -38,6 +38,14 @@ namespace CSharp
             }
         }
 
+        public int[] this[int i]
+        {
+            get
+            {
+                return matrix[i];
+            }
+        }
+
         public static implicit operator String(BaseMatrix mtrx)
         {
             String result = "";

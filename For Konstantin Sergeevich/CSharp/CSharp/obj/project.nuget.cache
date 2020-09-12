@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Qu79XJFbC/yCIqldSMuR2CvINy+/aRQxn7+k3+4OM1vT0uNpyJ8cLdPZgu8JTJhEV76f62VstLx+TnI6X46qAg==",
+  "dgSpecHash": "FIrp+8Pd9Qydngb0rRaKUeySnaeIglQSqSvLlhE4sz6eUg0wbLyYmMktVo7WoANnvn76UZN+C7aSwrlCULwqpg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\fedr\\source\\repos\\CSharp\\CSharp\\CSharp.csproj",
+  "projectFilePath": "C:\\Users\\fedr\\Desktop\\HomeWork\\For Konstantin Sergeevich\\CSharp\\CSharp\\CSharp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fedr\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.0.1\\microsoft.aspnetcore.app.ref.3.0.1.nupkg.sha512",
     "C:\\Users\\fedr\\.nuget\\packages\\microsoft.netcore.app.ref\\3.0.0\\microsoft.netcore.app.ref.3.0.0.nupkg.sha512",

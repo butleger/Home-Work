@@ -15,7 +15,5 @@ namespace CSharp
             base(row, column)
         { }
 
-
-
     }
 }

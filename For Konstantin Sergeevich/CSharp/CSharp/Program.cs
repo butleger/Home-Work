@@ -24,7 +24,11 @@ namespace CSharp
 
             Matrix m = new Matrix(a);
             m.transposition();
-            Console.Write(m);
+            Console.Write("transposition: \n" + m);
+            m.snakeFill();
+            Console.Write("snake filling: \n" + m);
+            Console.Write("strange output\n  base matrix: \n" + m + "  strange output: \n");
+            m.printStrange();
         } 
     }
 }

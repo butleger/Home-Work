@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace CSharp
@@ -16,19 +17,19 @@ namespace CSharp
         { }
 
         public void snakeFill()
-	{
-        
-        	int maxCircle = Math.Min(mtrx.Length, mtrx[0].Length) / 2;
+	    {
+            int maxCircle = (int)Math.Min(Row, Column) / 2 % 2 == 0 ? (int)Math.Min(Row, Column) / 2 : (int)Math.Min(Row, Column) / 2 + 1;
+            int i = 0 , j = 0, counter = 1;
         	for (int circle = 0 ; circle < maxCircle ; ++circle)
         	{
-            		for (; i < rows - circle ; ++i )
+            		for (; i < Row - circle ; ++i )
             		{
                 		base[i, j] = counter;
                 		++counter;
             		}
             		--i;
             		++j;
-            		for (; j < cols - circle ; ++j )
+            		for (; j < (int)Column - circle ; ++j )
             		{	
                 		base[i, j] = counter;
                 		++counter;
@@ -52,21 +53,21 @@ namespace CSharp
         	}
 	}
 	
-	static void printStrange()
+	public void printStrange()
 	{
-        	int max = rows / 2;  
+            int max = (int)(Column / 2) ;  
         	for (int i = 0; i < max ; ++i )
         	{
-            		for (int j = 0 ; j < rows ; ++j)
+            		for (int j = 0 ; j < Row ; ++j)
             		{
-                		Console.Write(base[j, i] + " " + base[rows - j - 1, cols - i - 1] + " ");
+                		Console.Write(base[j, i] + " " + base[(int)Row - j - 1, (int)Column - i - 1] + " ");
             		}
             		Console.Write('\n');
         	}
-        	if (rows % 2 == 1 )
+        	if ((int)Column % 2 == 1 )
         	{
-            		for (int i = 0 ; i < cols ; ++i)
-                		Console.Write(base[rows/2 + 1, i]);
+            		for (int i = 0 ; i < (int)Row ; ++i)
+                		Console.Write(base[i, max] + " ");
         	}
             
     	}

@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\fedr\\source\\repos\\CSharp\\CSharp\\CSharp.csproj",
+      "projectUniqueName": "C:\\Users\\fedr\\Desktop\\HomeWork\\For Konstantin Sergeevich\\CSharp\\CSharp\\CSharp.csproj",
       "projectName": "CSharp",
-      "projectPath": "C:\\Users\\fedr\\source\\repos\\CSharp\\CSharp\\CSharp.csproj",
+      "projectPath": "C:\\Users\\fedr\\Desktop\\HomeWork\\For Konstantin Sergeevich\\CSharp\\CSharp\\CSharp.csproj",
       "packagesPath": "C:\\Users\\fedr\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\fedr\\source\\repos\\CSharp\\CSharp\\obj\\",
+      "outputPath": "C:\\Users\\fedr\\Desktop\\HomeWork\\For Konstantin Sergeevich\\CSharp\\CSharp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"

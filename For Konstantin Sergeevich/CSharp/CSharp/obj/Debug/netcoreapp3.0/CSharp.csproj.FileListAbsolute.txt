@@ -11,3 +11,16 @@ C:\Users\fedr\source\repos\CSharp\CSharp\obj\Debug\netcoreapp3.0\CSharp.dll
 C:\Users\fedr\source\repos\CSharp\CSharp\obj\Debug\netcoreapp3.0\CSharp.pdb
 C:\Users\fedr\source\repos\CSharp\CSharp\obj\Debug\netcoreapp3.0\CSharp.csproj.CoreCompileInputs.cache
 C:\Users\fedr\source\repos\CSharp\CSharp\obj\Debug\netcoreapp3.0\CSharp.genruntimeconfig.cache
+C:\Users\fedr\Desktop\HomeWork\For Konstantin Sergeevich\CSharp\CSharp\bin\Debug\netcoreapp3.0\CSharp.exe
+C:\Users\fedr\Desktop\HomeWork\For Konstantin Sergeevich\CSharp\CSharp\bin\Debug\netcoreapp3.0\CSharp.deps.json
+C:\Users\fedr\Desktop\HomeWork\For Konstantin Sergeevich\CSharp\CSharp\bin\Debug\netcoreapp3.0\CSharp.runtimeconfig.json
+C:\Users\fedr\Desktop\HomeWork\For Konstantin Sergeevich\CSharp\CSharp\bin\Debug\netcoreapp3.0\CSharp.runtimeconfig.dev.json
+C:\Users\fedr\Desktop\HomeWork\For Konstantin Sergeevich\CSharp\CSharp\bin\Debug\netcoreapp3.0\CSharp.dll
+C:\Users\fedr\Desktop\HomeWork\For Konstantin Sergeevich\CSharp\CSharp\bin\Debug\netcoreapp3.0\CSharp.pdb
+C:\Users\fedr\Desktop\HomeWork\For Konstantin Sergeevich\CSharp\CSharp\obj\Debug\netcoreapp3.0\CSharp.csprojAssemblyReference.cache
+C:\Users\fedr\Desktop\HomeWork\For Konstantin Sergeevich\CSharp\CSharp\obj\Debug\netcoreapp3.0\CSharp.csproj.CoreCompileInputs.cache
+C:\Users\fedr\Desktop\HomeWork\For Konstantin Sergeevich\CSharp\CSharp\obj\Debug\netcoreapp3.0\CSharp.AssemblyInfoInputs.cache
+C:\Users\fedr\Desktop\HomeWork\For Konstantin Sergeevich\CSharp\CSharp\obj\Debug\netcoreapp3.0\CSharp.AssemblyInfo.cs
+C:\Users\fedr\Desktop\HomeWork\For Konstantin Sergeevich\CSharp\CSharp\obj\Debug\netcoreapp3.0\CSharp.dll
+C:\Users\fedr\Desktop\HomeWork\For Konstantin Sergeevich\CSharp\CSharp\obj\Debug\netcoreapp3.0\CSharp.pdb
+C:\Users\fedr\Desktop\HomeWork\For Konstantin Sergeevich\CSharp\CSharp\obj\Debug\netcoreapp3.0\CSharp.genruntimeconfig.cache
