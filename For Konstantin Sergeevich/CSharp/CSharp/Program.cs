@@ -1,11 +1,45 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace CSharp
 {
+    internal class Test:
+        IComparable<Test>
+    {
+        private int value;
+
+        public Test(int value)
+        {
+            this.value = value;
+        }
+        int IComparable<Test>.CompareTo(Test t1) 
+        {
+            return this.value - t1.value;
+        }
+
+        public static implicit operator String(Test test)
+        {
+            return "Test = " + test.value;
+        }
+    }
+
     public sealed class Program
     {
+        static void TestTest()
+        {
+            List<Test> l = new List<Test>() { new Test(1), new Test(2), new Test(3) };
+            l.Sort();
+
+            foreach (var el in l)
+            {
+                Console.Write(el + " ");
+            }
+
+            Console.WriteLine('\n');
+        }
         static void Main()
         {
             int row = 3;
@@ -29,6 +63,8 @@ namespace CSharp
             Console.Write("snake filling: \n" + m);
             Console.Write("strange output\n  base matrix: \n" + m + "  strange output: \n");
             m.printStrange();
+            Console.WriteLine("\n=====================================================================");
+            TestTest();
         } 
     }
 }
